@@ -107,6 +107,26 @@ def build():
         html.Div(className="page", children=[
             main_title(),
             html.Div(className='content', children=[
+                html.Div(
+                    [
+                        html.Div(
+                            [html.H6(id="temperatura_instantanea_aluno"), html.P("Temperatura")],
+                            id="valor_temperatura",
+                            className="monitor",
+                        ),
+                        html.Div(
+                            [html.H6(id="luminosidade_instantanea_aluno"), html.P("Luminosidade")],
+                            id="valor_temperatura",
+                            className="monitor",
+                        ),
+                        html.Div(
+                            [html.H6(id="qtd_alunos_instantanea_aluno"), html.P("Alunos")],
+                            id="valor_temperatura",
+                            className="monitor",
+                        ),
+                    ],
+                    className="linha_monitores",
+                ),
                 dcc.Graph(id='quantidade_faltas', className='container'),
                 dcc.Graph(id='temperatura', className='container'),
                 dcc.Graph(id='umidade', className='container'),
@@ -290,6 +310,62 @@ def update_figure(startDate, endDate):
 # #             'title': 'MAPE of each forecast algorithm'
 # #         }
 # #     }
+
+
+
+# Selectors -> well text
+@app.callback(
+    Output("temperatura_instantanea_aluno", "children"),
+    [
+        Input('datepickerrange', 'start_date'),
+        Input('datepickerrange', 'end_date'),
+        # Input('interval-component', 'n_intervals'),
+        # Input('selectedMeasurementStations', 'value'),
+        # Input('selectedAlgorithms', 'value'),
+        # Input('impute', 'value')
+
+    ],
+)
+def temperatura_instantanea_aluno(startDate, endDate):
+    # dff = filter_dataframe(df, well_statuses, well_types, year_slider)
+    return np.round(BaseDados['temperatura'][endDate], 2)
+
+
+# Selectors -> well text
+@app.callback(
+    Output("luminosidade_instantanea_aluno", "children"),
+    [
+        Input('datepickerrange', 'start_date'),
+        Input('datepickerrange', 'end_date'),
+        # Input('interval-component', 'n_intervals'),
+        # Input('selectedMeasurementStations', 'value'),
+        # Input('selectedAlgorithms', 'value'),
+        # Input('impute', 'value')
+
+    ],
+)
+def luminosidade_instantanea_aluno(startDate, endDate):
+    # dff = filter_dataframe(df, well_statuses, well_types, year_slider)
+    return np.round(BaseDados['luminosidade'][endDate], 2)
+
+
+@app.callback(
+    Output("qtd_alunos_instantanea_aluno", "children"),
+    [
+        Input('datepickerrange', 'start_date'),
+        Input('datepickerrange', 'end_date'),
+        # Input('interval-component', 'n_intervals'),
+        # Input('selectedMeasurementStations', 'value'),
+        # Input('selectedAlgorithms', 'value'),
+        # Input('impute', 'value')
+
+    ],
+)
+def qtd_alunos_instantanea_instantanea_aluno(startDate, endDate):
+    # dff = filter_dataframe(df, well_statuses, well_types, year_slider)
+    return np.round(BaseDados['qtd_alunos'][endDate], 2)
+
+
 
 layout = build()
 # valores individuais

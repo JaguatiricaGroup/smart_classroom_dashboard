@@ -107,6 +107,9 @@
         /*justify-content: center;*/
         /*transform: translateY(-50%);*/
     }
+    .monitor {
+        grid-area: 6;
+    }
 }
 
 .content {
@@ -170,4 +173,17 @@ h4 {
 
 .info{
     font-size: 20px;
+}
+
+.monitor{
+    grid-area: 1;
+    border-style: solid;
+    justify-content: center;
+    font-size: 24px;
+    /*width: 150px;*/
+    padding: 20px;
+}
+
+.linha_monitores{
+    display: grid;
 }
