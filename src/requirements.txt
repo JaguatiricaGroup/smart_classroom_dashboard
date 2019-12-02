@@ -5,3 +5,4 @@ pandas
 numpy
 gunicorn
 plotly
+dash_daq
